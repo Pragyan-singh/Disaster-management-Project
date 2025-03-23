@@ -1,0 +1,92 @@
+type User = record {
+    email: text;
+    password: text;
+    name: text;
+    user_type: text;
+    phone: text;
+    address: text;
+    is_admin: bool;
+};
+
+type HelpRequest = record {
+    victim_id: text;
+    request_type: text;
+    description: text;
+    urgency: text;
+    location: text;
+    status: text;
+    timestamp: text;
+    latitude: text;
+    longitude: text;
+    verification_note: opt text;
+    verified_by: opt text;
+    organization_id: opt text;
+    assigned_volunteer: opt text;
+};
+
+type VolunteerLocation = record {
+    email: text;
+    latitude: text;
+    longitude: text;
+    address: text;
+    last_updated: text;
+};
+
+type SupplyItem = record {
+    name: text;
+    quantity: nat32;
+    unit: text;
+};
+
+type SupplyBundle = record {
+    id: text;
+    name: text;
+    description: text;
+    items: vec SupplyItem;
+    status: text;
+    assigned_to: opt text;
+    created_at: text;
+};
+
+type DistributionDetail = record {
+    amount: float64;
+    purpose: text;
+    date: text;
+};
+
+type Donation = record {
+    id: text;
+    amount: float64;
+    donor_name: text;
+    donor_email: text;
+    date: text;
+    distribution_details: vec DistributionDetail;
+};
+
+service : {
+    register_user: (User) -> (bool);
+    get_user: (text) -> (opt User) query;
+    get_all_users: () -> (vec User) query;
+    update_user: (text, User) -> (bool);
+    delete_user: (text) -> (bool);
+    is_admin: (text) -> (bool) query;
+    verify_password: (text, text) -> (bool) query;
+    create_help_request: (HelpRequest) -> (bool);
+    get_user_requests: (text) -> (vec HelpRequest) query;
+    get_all_requests: () -> (vec HelpRequest) query;
+    update_request_status: (text, text, text) -> (bool);
+    cancel_help_request: (text, text) -> (bool);
+    update_volunteer_location: (text, text, text, text) -> (bool);
+    get_nearby_requests: (text, text) -> (vec HelpRequest) query;
+    verify_help_request: (text, text, text, text) -> (bool);
+    organization_login: (text, text) -> (bool);
+    get_all_volunteers: () -> (vec User) query;
+    create_supply_bundle: (SupplyBundle) -> (bool);
+    get_organization_supply_bundles: () -> (vec SupplyBundle) query;
+    distribute_supply_bundle: (text, text) -> (bool);
+    get_organization_donations: () -> (vec Donation) query;
+    assign_volunteer_to_request: (text, text) -> (bool);
+    admin_login: (text, text) -> (bool);
+    make_donation: (Donation) -> (bool);
+    get_donor_donations: (text) -> (vec Donation) query;
+}
