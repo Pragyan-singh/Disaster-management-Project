@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' https://unpkg.com;
+  connect-src 'self' http://localhost:4943 https://your-production-api.com;
+  img-src 'self' data: https://*.tile.openstreetmap.org;
+  style-src 'self' 'unsafe-inline' https://unpkg.com;
+">
+  
+  <meta http-equiv="Permissions-Policy" content="
+  geolocation=(), accelerometer=(), gyroscope=(), magnetometer=(), payment=()">
+
+  <title>Disaster Relief Project</title>
+  <link rel="stylesheet" 
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+  integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
+  crossorigin="anonymous" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/main.jsx"></script>
+</body>
