@@ -1,10 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "experimentalDecorators": true,
-        "strictPropertyInitialization": false,
-        "moduleResolution": "node",
-        "allowJs": true,
-        "outDir": "HACK_BECAUSE_OF_ALLOW_JS"
-    }
+  "compilerOptions": {
+    "target": "ES2020",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "HACK_BECAUSE_OF_ALLOW_JS/src/**/*.js",
+    "HACK_BECAUSE_OF_ALLOW_JS/src/**/*.jsx",
+    "HACK_BECAUSE_OF_ALLOW_JS/src/**/*.ts",
+    "HACK_BECAUSE_OF_ALLOW_JS/src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "target"
+  ]
 }
